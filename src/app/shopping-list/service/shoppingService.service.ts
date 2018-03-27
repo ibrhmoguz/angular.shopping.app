@@ -1,8 +1,18 @@
 import { Injectable } from '@angular/core';
+import { Ingredient } from '../../shared/ingredient.model';
 
-@Injectable()
-export class ShoppingServiceService {
+export class ShoppingService {
+    private ingredients: Ingredient[] = [
+        new Ingredient('Apples', 5),
+        new Ingredient('Tomatoes', 10),
+    ];
+    constructor() { }
 
-constructor() { }
+    getIngredients(){
+        return this.ingredients;
+    }
 
+    addIngredient(ingredient: Ingredient) {
+        this.ingredients.push(ingredient);
+    }
 }
