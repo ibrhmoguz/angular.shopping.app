@@ -29,6 +29,18 @@ export class RecipeService {
                 new Ingredient('Muz', 10),
                 new Ingredient('Çikolota Sosu', 10)
             ])
+            ,
+        new Recipe(
+            3,
+            'Pizza',
+            'This is simply a test3',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDcGSsynhCcoNXNXj4Iuvjr5wIWRohLb241_WytZbzX8muPTUIIA',
+            [
+                new Ingredient('Mantar', 1),
+                new Ingredient('Biber', 20),
+                new Ingredient('Mozeralla', 10),
+                new Ingredient('Çikolota Sosu', 10)
+            ])
     ];
     constructor(private shoppingService: ShoppingService) { }
 
