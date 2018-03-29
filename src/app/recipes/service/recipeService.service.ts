@@ -9,6 +9,7 @@ export class RecipeService {
 
     private recipes: Recipe[] = [
         new Recipe(
+            1,
             'Baklava',
             'This is simply a test1',
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlyzIcrYJY8ZyLdsMS1PzOfeNuIhvmZIGXM8LTwozWqpZsYscJuA',
@@ -18,6 +19,7 @@ export class RecipeService {
                 new Ingredient('Antep Fıstık', 10)
             ]),
         new Recipe(
+            2,
             'Waffle',
             'This is simply a test2',
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFXaV5vKd3FLcWPhw0Q-p2q6_8tbxTMR8aB2m5ZekDVD15zxQ7Pw',
@@ -36,5 +38,9 @@ export class RecipeService {
 
     addIngredientsToShoppingList(ingredients: Ingredient[]) {
         this.shoppingService.addIngredients(ingredients);
+    }
+
+    getRecipeById(id: number) {
+        return this.recipes.find((s) => { return s.id == id });
     }
 }
