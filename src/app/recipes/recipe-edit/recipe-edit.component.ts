@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, NgForm, FormArray } from '@angular/forms';
 import { RecipeService } from '../service/recipeService.service';
+import { Ingredient } from '../../shared/ingredient.model';
+import { Recipe } from '../recipe.model';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -11,6 +13,7 @@ import { RecipeService } from '../service/recipeService.service';
 export class RecipeEditComponent implements OnInit {
   id: number;
   editMode: boolean = false;
+  recipeForm: FormGroup;
 
   constructor(private route: ActivatedRoute, private recipeService: RecipeService) { }
 
@@ -26,19 +29,37 @@ export class RecipeEditComponent implements OnInit {
   }
 
   private initForm() {
-    let recipeName = '';
-    let recipeImagePath = ''
-    let recipeDescription = '';
+    let rname = '';
+    let rImagePath = '';
+    let rDescription = '';
+    let rIngredients = new FormArray([]);
 
     if (this.editMode) {
       const recipe = this.recipeService.getRecipeById(this.id);
-      recipeName = recipe.name;
-      recipeDescription = recipe.description;
-      recipeImagePath = recipe.imagePath;
+      rname = recipe.name;
+      rImagePath = recipe.imagePath;
+      rDescription = recipe.description;
+      if (recipe['ingredients']) {
+        for (let ing of recipe.ingredients) {
+          rIngredients.push(
+            new FormGroup({
+              'name': new FormControl(ing.name),
+              'amount': new FormControl(ing.amount)
+            })
+          );
+        }
+      }
     }
+
+    this.recipeForm = new FormGroup({
+      'name': new FormControl(rname),
+      'imagePath': new FormControl(rImagePath),
+      'description': new FormControl(rDescription),
+      'ingredients': rIngredients,
+    })
   }
 
   onSubmit() {
-
+    console.log(this.recipeForm);
   }
 }
