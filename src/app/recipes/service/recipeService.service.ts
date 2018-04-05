@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
 import { Recipe } from '../recipe.model';
 import { Ingredient } from '../../shared/ingredient.model';
 import { ShoppingService } from '../../shopping-list/service/shoppingService.service';
 import { Subject } from 'rxjs/Subject';
+import 'rxjs/Rx';
 
 @Injectable()
 export class RecipeService {
@@ -43,7 +45,7 @@ export class RecipeService {
                 new Ingredient('Çikolota Sosu', 10)
             ])
     ];
-    constructor(private shoppingService: ShoppingService) { }
+    constructor(private shoppingService: ShoppingService, private http: Http) { }
 
     getRecipes() {
         return this.recipes.slice();
@@ -70,6 +72,11 @@ export class RecipeService {
 
     deleteRecipe(index: number) {
         this.recipes.splice(index - 1, 1);
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    setRecipes(recipes: Recipe[]) {
+        this.recipes = recipes;
         this.recipesChanged.next(this.recipes.slice());
     }
 }

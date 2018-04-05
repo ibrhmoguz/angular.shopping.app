@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Ingredient } from '../../shared/ingredient.model';
 import { Subject } from 'rxjs/Subject';
 
-export class ShoppingService {
+export class ShoppingService {   
     ingredientsChanged = new Subject<Ingredient[]>();
     startedEditing = new Subject<number>();
 
@@ -10,6 +10,7 @@ export class ShoppingService {
         new Ingredient('Apples', 5),
         new Ingredient('Tomatoes', 10),
     ];
+
     constructor() { }
 
     getIngredients() {
@@ -40,6 +41,11 @@ export class ShoppingService {
 
     updateIngredient(index: number, newIngredient: Ingredient) {
         this.ingredients[index] = newIngredient;
+        this.ingredientsChanged.next(this.ingredients.slice());
+    }
+
+    setIngredients(ingredients: Ingredient[]) {
+        this.ingredients = ingredients;
         this.ingredientsChanged.next(this.ingredients.slice());
     }
 }
