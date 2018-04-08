@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DataStorageService } from '../shared/dataStorageService.service';
+import { DataStorageService } from '../../shared/dataStorageService.service';
 
 @Component({
   selector: 'app-header',

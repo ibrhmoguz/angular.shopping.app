@@ -3,33 +3,24 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-import { ShoppingService } from './shopping-list/service/shoppingService.service';
-import { AppRouting } from './appRouting.module';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-import { RecipeService } from './recipes/service/recipeService.service';
-import { DataStorageService } from './shared/dataStorageService.service';
-import { RecipesModule } from './recipes/recipe.module';
+import { AppRoutingModule } from './appRouting.module';
 import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
 import { ShoppingListModule } from './shopping-list/shoppingList.module';
-import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    HomeComponent
+    AppComponent
 ],
   imports: [
     BrowserModule,
     HttpModule,
-    AppRouting,
-    ShoppingListModule,
-    SharedModule
+    AppRoutingModule,
+    SharedModule,
+    CoreModule,
+    ShoppingListModule
   ],
-  providers: [ShoppingService, RecipeService, DataStorageService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
