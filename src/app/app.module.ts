@@ -14,17 +14,18 @@ import { DataStorageService } from './shared/dataStorageService.service';
 import { RecipesModule } from './recipes/recipe.module';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingListModule } from './shopping-list/shoppingList.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
-  ],
+    HeaderComponent,
+    HomeComponent
+],
   imports: [
     BrowserModule,
     HttpModule,
     AppRouting,
-    RecipesModule,
     ShoppingListModule,
     SharedModule
   ],
